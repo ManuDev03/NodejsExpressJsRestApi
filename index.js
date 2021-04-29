@@ -31,6 +31,10 @@ app.get("/api/courses/:id", (req, res) => {
 });
 
 app.post("/api/courses", (req, res) => {
+    if(!req.body.name || req.body.name.length < 3){
+        // 400 Bad request
+        res.status(400).send('Name required should min of 3 characters ..')
+    }
   const course = {
     id: courses.length + 1,
     name: req.body.name,
